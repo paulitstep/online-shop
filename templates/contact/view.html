@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='text-center'>
+  <h1 class="text-muted">Обратная связь</h1>
+</div>
+<div class='container'>
+  <div class='row'>
+    <div class='col'>
+      <div class='col-md-6 col-12 mx-auto'>
+        <p class="pt-4">Написать нам сообщение</p>
+      <form class="contact-form" method='POST' action="{% url 'contact' %}"> {% csrf_token %}
+        {{ form.as_p }}
+        <button type='submit' class='btn btn-secondary'>Отправить</button>
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

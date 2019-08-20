@@ -1,0 +1,16 @@
+.bg-black {
+    background-color: rgba(14, 14, 14, 1.00);
+}
+
+.underline {
+    width: 350px;
+    height: 2px;
+    background-color: orangered;
+}
+
+.price {
+    color: #FE980F;
+    font-size: 26px;
+    font-weight: bold;
+    padding-top: 20px;
+}

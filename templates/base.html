@@ -1,0 +1,102 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <!-- jQuery Confirm v.3 -->
+    <link rel="stylesheet" href="{% static 'css/jquery-confirm.min.css' %}">
+
+    <link rel="stylesheet" href='{% static "css/main.css" %}'>
+
+    <script src="{% static 'js/all.js' %}"></script>
+  </head>
+
+  <body>
+    {% url 'home' as home_url %}
+    {% url 'contact' as contact_url %}
+    {% url 'register' as register_url %}
+    {% url 'login' as login_url %}
+    {% url 'logout' as logout_url %}
+    {% url 'carts:home' as cart_url %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black mb-3">
+  <div class="container">
+  <a class="navbar-brand" href="/">Paul.by</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item {% if request.path == home_url %}active{% endif %}">
+        <a class="nav-link" href="/">Главная <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle text-capitalize"
+        id="navbarDropdown" role="button" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">товары</a>
+        <div class="dropdown-menu bg-black text-capitalize" aria-labelledby="navbarDropdown">
+          <a href="{% url 'products:russian_list' %}" class="dropdown-item text-light">русская классическая литература</a>
+          <a href="{% url 'products:foreign_list' %}" class="dropdown-item text-light">зарубежная классическая литература</a>
+          <a href="{% url 'products:detective_list' %}" class="dropdown-item text-light">детекитвы</a>
+          <a href="{% url 'products:fantasy_list' %}" class="dropdown-item text-light">Фантастика, фэнтези</a>
+        </div>
+      </li>
+      <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
+      </li>
+    </ul>
+    <div class="navbar-nav">
+      {% if request.user.is_authenticated %}
+      <li class="nav-item {% if request.path == logout_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+      </li>
+      {% else %}
+      <li class="nav-item {% if request.path == register_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'register' %}">Зарегистрироваться</a>
+      </li>
+      <li class="nav-item {% if request.path == login_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+      </li>
+      {% endif %}
+      <li class="nav-item {% if request.path == cart_url %}active{% endif %}">
+        <a class="nav-link" href="{% url 'carts:home' %}"><i class="fa fa-shopping-cart mr-2" aria-hidden="true"></i>Корзина<span class="navbar-cart-count ml-2">{{ request.session.cart_items }}</span></a>
+      </li>
+    </div>
+  </div>
+</div>
+</nav>
+
+<div class="col-12 col-md-6 mx-auto py-4">
+<form method="GET" action="{% url 'search:query' %}" class="form my-2 my-lg-0 search-form">
+  <div class="input-group">
+    <input class="form-control" type="search" placeholder="Поиск" name="q" aria-label="Search" value="{{ request.GET.q }}">
+    <span class="input-group-btn">
+      <button class="btn btn-success" type="submit">Найти</button>
+    </span>
+  </div>
+</form>
+</div>
+
+
+    <div class="container">
+    {% block content %}{% endblock %}
+    </div>
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+
+    <script src="{% static 'js/jquery-confirm.min.js' %}"></script>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="{% static 'js/csrf.ajax.js' %}"></script>
+
+    <script src="{% static 'js/shop.js' %}"></script>
+
+  </body>
+</html>

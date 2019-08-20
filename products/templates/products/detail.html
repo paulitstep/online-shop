@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-5">
+        <img src='{{ object.image.url }}' class="card-img-top" /><br/>
+    </div>
+    <div class="col-md-7">
+        <h2 class="pt-5">{{ object.title }}</h2>
+        <p class="pt-3">{{ object.author_year }}</p>
+        <p class="price">{{ object.price }} руб.</p>
+        <p class="pt-3">На складе</p>
+        <p class="pt-4">{{ object.description }}</p>
+        <p class="pt-4">{% include 'products/update_cart.html' with product=object cart=cart %}</p>
+    </div>
+</div>
+{% endblock %}

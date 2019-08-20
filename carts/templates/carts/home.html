@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Корзина</h1>
+
+{% if cart.products.exists %}
+<table class="table cart-table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Цена</th>
+    </tr>
+  </thead>
+  <tbody class="cart-body">
+    {% for product in cart.products.all %}
+    <tr class="cart-products">
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+        {% include 'products/remove_products.html' with product_id=product.id %}
+      </td>
+      <td>{{ product.price }} BYN</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="2"></td>
+      <td><b>Предварительная сумма:</b> <span class="cart-subtotal">{{ cart.subtotal }} BYN</span></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td><b>Итоговая сумма:</b> <span class="cart-total">{{ cart.total }} BYN</span></td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td><a class="btn btn-lg btn-success" href="{% url 'carts:checkout' %}">Оформить заказ</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="cart-product-remove-form" style="display: none;">
+ {% include 'products/remove_products.html' %}
+</div>
+
+{% else %}
+<p class="lead">ВАША КОРЗИНА ПУСТА</p>
+{% endif %}
+
+{% endblock %}

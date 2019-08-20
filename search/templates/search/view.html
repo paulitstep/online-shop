@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block content%}
+    <div class="row mb-3">
+        {% if query %}
+        <div class="col-12">
+            Найдено по запросу "<b>{{ query }}</b>"
+            <hr/>
+        </div>
+        {% else %}
+
+        <div class="col-12 col-md-6 mx-auto py-4">
+            <input class="form-control" type="text" placeholder="Поиск" />
+        </div>
+
+        {% endif %}
+    {% for obj in object_list %}
+    <div class="col">
+        <div class="card" style="width: 20rem;">
+            <a href="{{ obj.get_absolute_url }}"><img class="img-fluid pb-3" src='{{ obj.image.url }}'></a>
+            <a href="{{ obj.get_absolute_url }}"><h5>{{ obj.title }}</h5></a>
+            <h5 class="text-muted"><small>{{ obj.author_year }}</small></h5>
+            <h5>{{ obj.price }} руб.</h5>
+            <div class="btn-group btn-group-toggle py-3">
+                {% include 'products/update_cart.html' with product=obj cart=cart %}
+            </div>
+        </div>
+
+        {% if forloop.counter|divisibleby:3 %}
+        </div></div><div class="row">
+        {% else %}
+        </div>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
