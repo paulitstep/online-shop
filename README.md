@@ -10,4 +10,6 @@ CSS framework</i> and <i>jQuery JavaScript library</i>.
 This project is not finished yet. Add-ons are coming!
 
 Add-ons:
-<ul>Custom User Model</ul>
+<ol type="1">
+  <li>Custom User Model</li>
+</ol>
