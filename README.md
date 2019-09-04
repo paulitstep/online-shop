@@ -8,3 +8,6 @@ Obviously, for back-end purposes I used Python Web framework <i>Django</i>. Fron
 CSS framework</i> and <i>jQuery JavaScript library</i>.
 
 This project is not finished yet. Add-ons are coming!
+
+Add-ons:
+<ul>Custom User Model</ul>
