@@ -1,7 +1,13 @@
+{% load crispy_forms_tags %}
+
 <form method='POST' action="{% if action_url %}{{ action_url }}{% else %}{% url 'login' %}{% endif %}"> {% csrf_token %}
     {% if next_url %}
     <input type="hidden" name="next" value="{{ next_url }}" />
     {% endif %}
-    {{ form }}
-    <button type='submit' class='btn btn-secondary'>Send</button>
+    <fieldset class="form-group">
+        {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+        <button type='submit' class='btn btn-outline-info'>Войти</button>
+    </div>
 </form>

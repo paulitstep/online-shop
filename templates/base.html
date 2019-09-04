@@ -14,6 +14,8 @@
     <link rel="stylesheet" href='{% static "css/main.css" %}'>
 
     <script src="{% static 'js/all.js' %}"></script>
+
+    <title>Книжный онлайн-магазин</title>
   </head>
 
   <body>
@@ -72,31 +74,22 @@
 </div>
 </nav>
 
-<div class="col-12 col-md-6 mx-auto py-4">
-<form method="GET" action="{% url 'search:query' %}" class="form my-2 my-lg-0 search-form">
-  <div class="input-group">
-    <input class="form-control" type="search" placeholder="Поиск" name="q" aria-label="Search" value="{{ request.GET.q }}">
-    <span class="input-group-btn">
-      <button class="btn btn-success" type="submit">Найти</button>
-    </span>
-  </div>
-</form>
+
+<div class="container">
+{% block content %}{% endblock %}
 </div>
 
 
-    <div class="container">
-    {% block content %}{% endblock %}
-    </div>
 
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 
-    <script src="{% static 'js/jquery-confirm.min.js' %}"></script>
+<script src="{% static 'js/jquery-confirm.min.js' %}"></script>
 
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
-    <script src="{% static 'js/csrf.ajax.js' %}"></script>
+<script src="{% static 'js/csrf.ajax.js' %}"></script>
 
-    <script src="{% static 'js/shop.js' %}"></script>
+<script src="{% static 'js/shop.js' %}"></script>
 
-  </body>
+</body>
 </html>

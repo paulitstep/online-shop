@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block content %}
+<div class="col-12 col-md-6 mx-auto py-4">
+<form method="GET" action="{% url 'search:query' %}" class="form my-2 my-lg-0 search-form">
+  <div class="input-group">
+    <input class="form-control" type="search" placeholder="Поиск" name="q" aria-label="Search" value="{{ request.GET.q }}">
+    <span class="input-group-btn">
+      <button class="btn btn-success" type="submit">Найти</button>
+    </span>
+  </div>
+</form>
+</div>
 
 <div class="row">
   {% for obj in object_list %}
@@ -23,6 +33,11 @@
     </div>
    {% endif %}
 {% endfor %}
-
-
 {% endblock %}
+
+<section>
+  <div class="footer font-small bg-black">
+    <div class="footer-copyright text-center text-light py-3">© 2019 Copyright <b>Paul Scheslionok</b>
+  </div>
+</div>
+</section>

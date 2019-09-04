@@ -11,7 +11,7 @@ User = get_user_model()
 
 
 class HomePage(ListView):
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by('?')
     template_name = 'home_page.html'
 
     def get_context_data(self, *args, **kwargs):

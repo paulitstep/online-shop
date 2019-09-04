@@ -2,24 +2,35 @@
 
 
 {% block content%}
-   <div class="row">
-  {% for obj in object_list %}
-  <div class="col py-3">
-    <div class="card text-center">
-        <a href="{{ obj.get_absolute_url }}"><img class="img-fluid pb-3" src='{{ obj.image.url }}'></a>
-        <a href="{{ obj.get_absolute_url }}"><h5>{{ obj.title }}</h5></a>
-        <h5 class="text-muted"><small>{{ obj.author_year }}</small></h5>
-        <h5>{{ obj.price }} руб.</h5>
-        <div class="btn-group btn-group-toggle py-3 mx-auto">
-          {% include 'products/update_cart.html' with product=obj cart=cart %}
-        </div>
+<div class="col-12 col-md-6 mx-auto py-4">
+<form method="GET" action="{% url 'search:query' %}" class="form my-2 my-lg-0 search-form">
+  <div class="input-group">
+    <input class="form-control" type="search" placeholder="Поиск" name="q" aria-label="Search" value="{{ request.GET.q }}">
+    <span class="input-group-btn">
+      <button class="btn btn-success" type="submit">Найти</button>
+    </span>
+  </div>
+</form>
+</div>
+
+<div class="row">
+{% for obj in object_list %}
+<div class="col py-3">
+  <div class="card text-center">
+    <a href="{{ obj.get_absolute_url }}"><img class="img-fluid pb-3" src='{{ obj.image.url }}'></a>
+    <a href="{{ obj.get_absolute_url }}"><h5>{{ obj.title }}</h5></a>
+    <h5 class="text-muted"><small>{{ obj.author_year }}</small></h5>
+    <h5>{{ obj.price }} руб.</h5>
+    <div class="btn-group btn-group-toggle py-3 mx-auto">
+      {% include 'products/update_cart.html' with product=obj cart=cart %}
     </div>
+  </div>
 
 
-    {% if forloop.counter|divisibleby:3 and not forloop.last %}
-    </div></div><div class="row">
-    {% else %}
-    </div>
-   {% endif %}
+{% if forloop.counter|divisibleby:3 and not forloop.last %}
+</div></div><div class="row">
+{% else %}
+</div>
+{% endif %}
 {% endfor %}
 {% endblock %}

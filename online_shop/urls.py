@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.urls import path, include
 
-from accounts.views import login_page, register_page, guest_register_page
+from accounts.views import LoginView, RegisterView, guest_register_page
 from addresses.views import checkout_address_create_view, checkout_address_reuse_view
 from carts.views import cart_detail_api_view
 from .views import HomePage, about_page, contact_page
@@ -31,12 +31,12 @@ urlpatterns = [
     path('contact/', contact_page, name='contact'),
     path('api/cart/', cart_detail_api_view, name='api_cart'),
     path('cart/', include(('carts.urls', 'carts'), namespace='carts')),
-    path('login/', login_page, name='login'),
+    path('login/', LoginView.as_view(), name='login'),
     path('checkout/address/create/', checkout_address_create_view, name='checkout_address_create'),
     path('checkout/address/reuse/', checkout_address_reuse_view, name='checkout_address_reuse'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/guest/', guest_register_page, name='guest_register'),
-    path('register/', register_page, name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('products/', include(('products.urls', 'products'), namespace='products')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
     path('admin/', admin.site.urls),
