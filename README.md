@@ -12,4 +12,5 @@ This project is not finished yet. Add-ons are coming!
 Add-ons:
 <ol type="1">
   <li>Custom User Model</li>
+  <li>Custom Analytics with Django</li>
 </ol>
