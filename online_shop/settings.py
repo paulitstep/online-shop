@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     'billing.apps.BillingConfig',
     'addresses.apps.AddressesConfig',
-    'analytics.apps.AnalyticsConfig',
+    # 'analytics.apps.AnalyticsConfig',
     'crispy_forms',
 ]
 
@@ -52,6 +52,9 @@ AUTH_USER_MODEL = 'accounts.User'
 
 FORCE_SESSION_TO_ONE = False
 FORCE_INACTIVE_USER_END_SESSION = False
+
+STRIPE_SECRET_KEY = 'sk_test_wo34t2lkY7p6HFLWK0LoEuzg004LssANlm'
+STRIPE_PUB_KEY = 'pk_test_FsVbLJAjmFy3go8wLVloOHUK000Y40o2SD'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -141,4 +144,4 @@ MEDIA_ROOT = 'media'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'

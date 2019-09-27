@@ -9,7 +9,6 @@ class AddressForm(forms.ModelForm):
         labels = {
             'name': 'Имя и фамилия',
             'mobile': 'Контактный телефон',
-            'payment': 'Оплата',
             'address': 'Адрес (улица, дом, корпус, квартира)',
             'city': 'Город',
             'region': 'Область',
@@ -18,7 +17,6 @@ class AddressForm(forms.ModelForm):
         fields = [
             'name',
             'mobile',
-            'payment',
             'address',
             'city',
             'region',

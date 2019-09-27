@@ -35,16 +35,23 @@
     </div>
 
   {% else %}
-    <h1>Заказ</h1>
+    {% if not has_card %}
+    <!-- enter credit card here -->
+    <div class="stripe-payment-form" data-token="{{ publish_key }}" data-next-url="{{ request.build_absolute_uri }}" data-btn-title="Добавить карточку"></div>
 
-    <p>Товары в корзине: {% for product in order.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-    <p>Адрес доставки: {{ order.shipping_address.get_address }}</p>
-    <p>Сумма заказа: {{ order.cart.total }}</p>
-    <p>Сумма доставки: {{ order.shipping_total }}</p>
-    <p>Итого: {{ order.total }}</p>
-    <form class="form" method="POST" action="">{% csrf_token %}
-      <button type="submit" class="btn btn-success">Заказать</button>
-    </form>
+    {% else %}
+      <h1>Заказ</h1>
+
+      <p>Товары в корзине: {% for product in order.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+      <p>Адрес доставки: {{ order.shipping_address.get_address }}</p>
+      <p>Форма оплаты: {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Изменить</a>)</p>
+      <p>Сумма заказа: {{ order.cart.total }} руб.</p>
+      <p>Сумма доставки: {{ order.shipping_total }} руб.</p>
+      <p>Итого: {{ order.total }} руб.</p>
+      <form class="form" method="POST" action="">{% csrf_token %}
+        <button type="submit" class="btn btn-success">Заказать</button>
+      </form>
+    {% endif %}
   {% endif %}
 
 {% endif %}

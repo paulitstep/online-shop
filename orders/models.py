@@ -61,9 +61,8 @@ class Order(models.Model):
 
     def mark_paid(self):
         if self.check_done():
-            if self.shipping_address.payment == 'credit_card':
-                self.status = 'paid'
-                self.save()
+            self.status = 'paid'
+            self.save()
         return self.status
 
 

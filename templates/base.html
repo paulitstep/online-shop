@@ -13,6 +13,9 @@
 
     <link rel="stylesheet" href='{% static "css/main.css" %}'>
 
+    <!-- Stripe Custom Styling -->
+    <link rel="stylesheet" href='{% static "css/stripe.css" %}'>
+
     <script src="{% static 'js/all.js' %}"></script>
 
     <title>Книжный онлайн-магазин</title>
@@ -81,15 +84,24 @@
 
 
 
+<script src="https://js.stripe.com/v3/"></script>
+
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 
 <script src="{% static 'js/jquery-confirm.min.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.4/jsrender.min.js"></script>
+{% include 'js_templates.html' %}
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
 <script src="{% static 'js/csrf.ajax.js' %}"></script>
 
 <script src="{% static 'js/shop.js' %}"></script>
+
+<script src="{% static 'js/shop.billing.js' %}"></script>
+
+{% block javascript %}{% endblock %}
 
 </body>
 </html>

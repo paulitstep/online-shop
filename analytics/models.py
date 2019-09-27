@@ -24,7 +24,7 @@ class ObjectViewed(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.content_object} viewed on {self.timestamp}'
+        return f'{self.content_object} viewed by {self.user} on {self.timestamp}'
 
     class Meta:
         ordering = ['-timestamp']
@@ -69,11 +69,11 @@ class UserSession(models.Model):
 
 def post_save_session_receiver(sender, instance, created, *args, **kwargs):
     if created:
-        qs = UserSession.objects.filter(user=instance.user, ended=False, active=False).exclude(id=instance.id)
+        qs = UserSession.objects.filter(user=instance.user, ended=False, active=True).exclude(id=instance.id)
         for c in qs:
             c.end_session()
 
-    if not instance.active and not instance.ended:
+    if instance.active and not instance.ended:
         instance.end_session()
 
 

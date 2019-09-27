@@ -12,19 +12,12 @@ LIST_OF_REGIONS = (
     ('Mogilev', 'Могилевская область'),
 )
 
-PAYMENT_CHOICES = (
-    ('-', '-'),
-    ('cash', 'Наличными'),
-    ('credit_card', 'Карточкой'),
-)
-
 
 class Address(models.Model):
     billing_profile = models.ForeignKey(BillingProfile, on_delete=models.CASCADE)
     address_type = models.CharField(max_length=120, default='shipping')
     name = models.CharField(max_length=120)
     mobile = models.CharField(max_length=120)
-    payment = models.CharField(max_length=120, choices=PAYMENT_CHOICES, default='-')
     address = models.TextField(max_length=120)
     city = models.CharField(max_length=120, default='Минск')
     region = models.CharField(max_length=120, choices=LIST_OF_REGIONS, default='Minsk')

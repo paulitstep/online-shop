@@ -65,7 +65,6 @@ class ProductFeaturedDetailView(DetailView):
 
 
 class ProductDetailSlugView(ObjectViewedMixin, DetailView):
-    # queryset = Product.objects.all()
     template_name = 'products/detail.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -87,6 +86,4 @@ class ProductDetailSlugView(ObjectViewedMixin, DetailView):
             instance = qs.first()
         except:
             raise Http404('Uhhm')
-
-        # object_viewed_signal.send(instance.__class__, instance=instance, request=request)
         return instance
