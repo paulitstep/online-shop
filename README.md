@@ -12,5 +12,6 @@ This project is not finished yet. Add-ons are coming!
 Add-ons:
 <ol type="1">
   <li>Custom User Model</li>
-  <li>Custom Analytics with Django</li>
+  <li>Custom Analytics for Registered Users with Django (optionally)</li>
+  <li><i>Stripe</i> Online Payments</li>
 </ol>
