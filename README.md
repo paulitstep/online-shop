@@ -14,4 +14,5 @@ Add-ons:
   <li>Custom User Model</li>
   <li>Custom Analytics for Registered Users with Django (optionally)</li>
   <li><i>Stripe</i> Online Payments</li>
+  <li><i>Mailchimp</i> Marketing Platform</li>
 </ol>
