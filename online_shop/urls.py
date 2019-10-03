@@ -24,6 +24,7 @@ from accounts.views import LoginView, RegisterView, guest_register_page
 from addresses.views import checkout_address_create_view, checkout_address_reuse_view
 from billing.views import payment_method_view, payment_method_create_view
 from carts.views import cart_detail_api_view
+from marketing.views import MarketingPreferenceUpdateView, Mailchimp_Webhook_View
 from .views import HomePage, about_page, contact_page
 
 urlpatterns = [
@@ -42,5 +43,7 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('products/', include(('products.urls', 'products'), namespace='products')),
     path('search/', include(('search.urls', 'search'), namespace='search')),
+    path('settings/email/', MarketingPreferenceUpdateView.as_view(), name='marketing-pref'),
+    path('webhooks/mailchimp/', Mailchimp_Webhook_View.as_view(), name='webhooks-mailchimp'),
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'billing.apps.BillingConfig',
     'addresses.apps.AddressesConfig',
     # 'analytics.apps.AnalyticsConfig',
+    'marketing.apps.MarketingConfig',
     'crispy_forms',
 ]
 
@@ -52,6 +53,10 @@ AUTH_USER_MODEL = 'accounts.User'
 
 FORCE_SESSION_TO_ONE = False
 FORCE_INACTIVE_USER_END_SESSION = False
+
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER = os.environ.get('MAILCHIMP_DATA_CENTER')
+MAILCHIMP_EMAIL_AUDIENCE_ID = os.environ.get('MAILCHIMP_EMAIL_AUDIENCE_ID')
 
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_PUB_KEY = os.environ.get('STRIPE_PUB_KEY')
