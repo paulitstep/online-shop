@@ -27,7 +27,12 @@
     {% url 'register' as register_url %}
     {% url 'login' as login_url %}
     {% url 'logout' as logout_url %}
+    {% url 'accounts:home' as account_url %}
     {% url 'carts:home' as cart_url %}
+    {% url 'products:russian_list' as russian_url %}
+    {% url 'products:foreign_list' as foreign_url %}
+    {% url 'products:detective_list' as detective_url %}
+    {% url 'products:fantasy_list' as fantasy_url %}
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-black mb-3">
   <div class="container">
@@ -46,10 +51,10 @@
         id="navbarDropdown" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">товары</a>
         <div class="dropdown-menu bg-black text-capitalize" aria-labelledby="navbarDropdown">
-          <a href="{% url 'products:russian_list' %}" class="dropdown-item text-light">русская классическая литература</a>
-          <a href="{% url 'products:foreign_list' %}" class="dropdown-item text-light">зарубежная классическая литература</a>
-          <a href="{% url 'products:detective_list' %}" class="dropdown-item text-light">детекитвы</a>
-          <a href="{% url 'products:fantasy_list' %}" class="dropdown-item text-light">Фантастика, фэнтези</a>
+          <a href="{{ russian_url }}" class="dropdown-item text-light {% if request.path == russian_url %}active{% endif %}">русская классическая литература</a>
+          <a href="{{ foreign_url }}" class="dropdown-item text-light {% if request.path == foreign_url %}active{% endif %}">зарубежная классическая литература</a>
+          <a href="{{ detective_url }}" class="dropdown-item text-light {% if request.path == detective_url %}active{% endif %}">детекитвы</a>
+          <a href="{{ fantasy_url }}" class="dropdown-item text-light {% if request.path == fantasy_url %}active{% endif %}">Фантастика, фэнтези</a>
         </div>
       </li>
       <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
@@ -58,8 +63,18 @@
     </ul>
     <div class="navbar-nav">
       {% if request.user.is_authenticated %}
-      <li class="nav-item {% if request.path == logout_url %}active{% endif %}">
-        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Профиль
+        </a>
+        <div class="dropdown-menu bg-black" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item text-light {% if request.path == account_url %}active{% endif %}" href="{{ account_url }}">Главная</a>
+          <a class="dropdown-item text-light" href="#">Состояние счета</a>
+          <a class="dropdown-item text-light" href="#">Настройки</a>
+          <a class="dropdown-item text-light" href="#">Тех. поддержка</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item text-light" href="{% url 'logout' %}">Выйти</a>
+        </div>
       </li>
       {% else %}
       <li class="nav-item {% if request.path == register_url %}active{% endif %}">

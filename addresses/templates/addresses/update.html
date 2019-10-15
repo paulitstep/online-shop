@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content%}
+
+<div class="row">
+    <div class="col-10 mx-auto col-md-6">
+        {% if form.instance.address %}
+        <h3 class="my-3">Изменить адрес</h3>
+        {% else %}
+        <h3 class="my-3">Ввести адрес</h3>
+        {% endif %}
+        <hr/>
+        <form method='POST' action=""> {% csrf_token %}
+            {{ form|crispy }}
+            <button type='submit' class='btn btn-success'>Сохранить адрес</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

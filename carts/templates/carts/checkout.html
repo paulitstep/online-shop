@@ -43,7 +43,7 @@
       <h1>Заказ</h1>
 
       <p>Товары в корзине: {% for product in order.cart.products.all %}{{ product }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-      <p>Адрес доставки: {{ order.shipping_address.get_address }}</p>
+      <p>Адрес доставки: {{ order.shipping_address_final }}</p>
       <p>Форма оплаты: {{ billing_profile.default_card }} (<a href="{{ billing_profile.get_payment_method_url }}?next={{ request.build_absolute_uri }}">Изменить</a>)</p>
       <p>Сумма заказа: {{ order.cart.total }} руб.</p>
       <p>Сумма доставки: {{ order.shipping_total }} руб.</p>

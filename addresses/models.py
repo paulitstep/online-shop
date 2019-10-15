@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from billing.models import BillingProfile
 
@@ -26,9 +27,21 @@ class Address(models.Model):
     def __str__(self):
         return str(self.billing_profile)
 
-    def get_address(self):
-        return '{city},\n{address},\n{postal_code}'.format(
+    def get_absolute_url(self):
+        return reverse('address-update', kwargs={'pk': self.pk})
+
+    def get_short_address(self):
+        return '{name}, {city}, {address}'.format(
+            name=self.name,
             city=self.city,
+            address=self.address
+        )
+
+    def get_address(self):
+        return '{name},\n{city},\n{mobile},\n{address},\n{postal_code}'.format(
+            name=self.name,
+            city=self.city,
+            mobile=self.mobile,
             address=self.address,
             postal_code=self.postal_code
         )
